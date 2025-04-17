@@ -66,7 +66,7 @@ const App = () => {
                     <Route path="/" element={
                         <div>
                             <header className="header">
-                                <h1 className="font-bold text-3xl italic">🛒 KuruHavada Market 🛒</h1>
+                                <h1 className="font-bold text-3xl italic">🛒 WebMarketim 🛒</h1>
                                 <div className="balance">
                                     <h2>Bakiye: {balance} TL</h2>
                                 </div>

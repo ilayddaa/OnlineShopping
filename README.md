@@ -1,6 +1,6 @@
 ## Ekran Görüntüleri
 ### Ana Sayfa
-![Ana Sayfa](ss1.jpg)
+![Ana Sayfa](ss.jpg)
 
 ## Canlı Demo
 Projenin canlı demosuna [buradan](https://online-shopping-six-lime.vercel.app) ulaşabilirsiniz.
