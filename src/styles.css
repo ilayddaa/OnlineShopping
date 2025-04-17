@@ -61,6 +61,8 @@ h1 {
     cursor: pointer;
     font-weight: 600;
     transition: all 0.3s ease;
+    text-align: center;
+    margin-top: 20px;
 }
 
 .category-btn:hover,
