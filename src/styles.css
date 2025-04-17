@@ -456,14 +456,14 @@ h1 {
     }
 
     .cart-item {
+        display: flex;
         flex-direction: column;
-        /* Ürün bilgilerini dikey hizala */
         align-items: flex-start;
-        /* Sol hizala */
+        max-width: 500px;
+        /* Genişliği sınırla */
         width: 100%;
-        /* Kart genişliğini tam ekran yap */
-        margin-left: 0;
-        /* Sol boşluğu kaldır */
+        margin: 0 auto;
+        /* Sayfada ortala */
     }
 
     .cart-item span {
