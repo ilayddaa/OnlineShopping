@@ -62,14 +62,15 @@ const App = () => {
     return (
         <Router>
             <div className="app-container">
-                <h1 className="font-bold text-3xl italic">🛒 Market 🛒</h1>
-
                 <Routes>
                     <Route path="/" element={
                         <div>
-                            <div className="balance">
-                                <h2>Bakiye: {balance} TL</h2>
-                            </div>
+                            <header className="header">
+                                <h1 className="font-bold text-3xl italic">🛒 Market 🛒</h1>
+                                <div className="balance">
+                                    <h2>Bakiye: {balance} TL</h2>
+                                </div>
+                            </header>
 
                             <div className="category-buttons">
                                 {categories.map(category => (
