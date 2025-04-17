@@ -417,10 +417,13 @@ h1 {
     }
 
     /* Ürün Görseli */
+    /* Ürün Görseli */
     .product-image {
         height: 120px;
-        margin-left: 40px;
-        /* Görsel yüksekliğini küçült */
+        display: block;
+        /* Ortalamak için gerekli */
+        margin: 0 auto;
+        /* Yatay ortalama */
     }
 
     /* Kategoriler Butonları */
