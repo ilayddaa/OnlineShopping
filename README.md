@@ -3,7 +3,7 @@
 ![Ana Sayfa](ss.jpg)
 
 ## Canlı Demo
-Projenin canlı demosuna [buradan](online-shopping-git-main-ilayddaas-projects.vercel.app) ulaşabilirsiniz.
+Projenin canlı demosuna [buradan](https://online-shopping-six-lime.vercel.app) ulaşabilirsiniz.
 
 # Online Alışveriş Uygulaması
 
