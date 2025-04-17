@@ -390,3 +390,97 @@ h1 {
     font-weight: bold;
     color: #333;
 }
+
+/* Mobil cihazlar için (740px ve altı) */
+@media (max-width: 740px) {
+
+    /* Genel stil */
+    body {
+        font-size: 14px;
+        /* Yazı boyutunu küçült */
+    }
+
+    /* Ürünler */
+    .products {
+        flex-direction: column;
+        /* Ürünleri dikey hizala */
+        align-items: center;
+        /* Ortala */
+    }
+
+    /* Ürün Kartı */
+    .product-card {
+        width: 90%;
+        /* Kart genişliğini ekranın %90'ına ayarla */
+        margin: 10px 0;
+        /* Kartlar arasında dikey boşluk bırak */
+    }
+
+    /* Ürün Görseli */
+    .product-image {
+        height: 120px;
+        margin-left: 34px;
+        /* Görsel yüksekliğini küçült */
+    }
+
+    /* Kategoriler Butonları */
+    .category-buttons {
+        flex-wrap: wrap;
+        /* Butonları birden fazla satıra sığdır */
+        justify-content: center;
+        /* Ortala */
+    }
+
+    .category-btn {
+        padding: 8px 12px;
+        /* Buton boyutlarını küçült */
+        font-size: 14px;
+        /* Yazı boyutunu küçült */
+    }
+
+    /* Sepete Git Butonu */
+    .go-to-cart-btn {
+        font-size: 14px;
+        /* Yazı boyutunu küçült */
+        padding: 10px 12px;
+        /* Buton boyutlarını küçült */
+    }
+
+    /* Sepet Sayfası */
+    .cart-page {
+        padding: 10px;
+        /* Sayfa kenar boşluklarını küçült */
+    }
+
+    .cart-item {
+        flex-direction: column;
+        /* Ürün bilgilerini dikey hizala */
+        align-items: flex-start;
+        /* Sol hizala */
+        width: 100%;
+        /* Kart genişliğini tam ekran yap */
+        margin-left: 0;
+        /* Sol boşluğu kaldır */
+    }
+
+    .cart-item span {
+        margin-bottom: 5px;
+        /* Bilgiler arasında boşluk bırak */
+    }
+
+    /* Sepet toplamı */
+    .cart .total {
+        font-size: 1.2rem;
+        /* Yazı boyutunu küçült */
+        text-align: center;
+        /* Ortala */
+    }
+
+    /* Sepet Sayfasındaki Geri Dön Butonu */
+    .back-button {
+        font-size: 14px;
+        /* Yazı boyutunu küçült */
+        padding: 8px 12px;
+        /* Buton boyutlarını küçült */
+    }
+}
