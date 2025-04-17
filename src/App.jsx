@@ -62,7 +62,7 @@ const App = () => {
     return (
         <Router>
             <div className="app-container">
-                <h1 className="font-bold text-3xl italic">🛒 MARKET 🛒</h1>
+                <h1 className="font-bold text-3xl italic">🛒 Enflasyon Market 🛒</h1>
 
                 {/* Yönlendirme */}
                 <Routes>
