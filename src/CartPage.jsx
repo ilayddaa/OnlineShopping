@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const CartPage = ({ cart, balance }) => {
+const CartPage = ({ cart, balance, removeFromCart }) => {
     const totalAmount = cart.reduce((total, item) => total + item.price * item.quantity, 0);
 
     if (!cart || cart.length === 0) {
@@ -18,12 +18,10 @@ const CartPage = ({ cart, balance }) => {
         <div className="cart-page">
             <h1>Sepetim</h1>
 
-            {/* Bakiye */}
             <div className="balance">
                 <h2>Bakiye: {balance} TL</h2>
             </div>
 
-            {/* Sepet Ürünleri */}
             <div className="cart-items">
                 {cart.map((item, index) => (
                     <div key={index} className="cart-item">
@@ -34,17 +32,21 @@ const CartPage = ({ cart, balance }) => {
                         <div className="item-total">
                             <span>{item.quantity * item.price} ₺</span>
                         </div>
+
+                        <div className="quantity-controls">
+                            <button onClick={() => removeFromCart(item.id, 1)}>-</button>
+                            <span>{item.quantity}</span>
+                            <button onClick={() => removeFromCart(item.id, -1)}>+</button>
+                        </div>
                     </div>
                 ))}
             </div>
 
-            {/* Toplam Tutar */}
             <div className="total-section">
                 <h3>Toplam Tutar:</h3>
                 <p className="total-amount">{totalAmount} ₺</p>
             </div>
 
-            {/* Geri Dön Butonu */}
             <div className="back-to-products">
                 <Link to="/" className="back-button">
                     Ürünlere Geri Dön

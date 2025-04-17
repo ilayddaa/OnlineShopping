@@ -7,7 +7,6 @@ import './styles.css';
 const App = () => {
     const [cart, setCart] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
-    const [quantities, setQuantities] = useState({});
     const [balance, setBalance] = useState(22100);
 
     const categories = [
@@ -22,19 +21,17 @@ const App = () => {
         ? products.filter(product => product.category === selectedCategory)
         : products;
 
-    const addToCart = (product) => {
-        const quantity = quantities[product.id] || 0;
-        if (quantity === 0) return;
-
+    const addToCart = (product, quantity) => {
         const totalCost = product.price * quantity;
 
         if (totalCost > balance) {
-            alert(`Yetersiz bakiye! Bu ürün için ${totalCost} TL gerekiyor, ama sadece ${balance} TL'n var.`);
+            alert(`Yetersiz bakiye! Bu ürün için ${totalCost} TL gerekiyor, ama sadece ${balance} TL'niz var.`);
             return;
         }
 
         const updatedCart = [...cart];
         const existingProduct = updatedCart.find(item => item.id === product.id);
+
         if (existingProduct) {
             existingProduct.quantity += quantity;
         } else {
@@ -45,18 +42,23 @@ const App = () => {
         setBalance(balance - totalCost);
     };
 
-    const increaseQuantity = (productId) => {
-        setQuantities({
-            ...quantities,
-            [productId]: (quantities[productId] || 0) + 1,
-        });
-    };
+    // Sepetten belirli bir miktar ürün çıkarma ve bakiye artırma
+    const removeFromCart = (productId, quantity) => {
+        const updatedCart = [...cart];
+        const existingProduct = updatedCart.find(item => item.id === productId);
 
-    const decreaseQuantity = (productId) => {
-        setQuantities({
-            ...quantities,
-            [productId]: Math.max((quantities[productId] || 0) - 1, 0),
-        });
+        if (existingProduct) {
+            existingProduct.quantity -= quantity;
+
+            if (existingProduct.quantity <= 0) {
+                updatedCart.splice(updatedCart.indexOf(existingProduct), 1);
+            }
+
+            // Sepetten çıkarılan ürünün fiyatını bakiyeye ekle
+            setBalance(balance + existingProduct.price * quantity);
+        }
+
+        setCart(updatedCart);
     };
 
     return (
@@ -94,10 +96,6 @@ const App = () => {
                             <div className="products">
                                 {filteredProducts.length > 0 ? (
                                     filteredProducts.map(product => {
-                                        const quantity = quantities[product.id] || 0;
-                                        const totalCost = product.price * quantity;
-                                        const disabled = quantity === 0;
-
                                         return (
                                             <div key={product.id} className="product-card">
                                                 <img src={product.image} alt={product.name} className="product-image" />
@@ -105,16 +103,9 @@ const App = () => {
                                                 <p>{product.category}</p>
                                                 <p>Fiyat: {product.price} ₺</p>
 
-                                                <div className="quantity-controls">
-                                                    <button onClick={() => decreaseQuantity(product.id)}>-</button>
-                                                    <span>{quantity}</span>
-                                                    <button onClick={() => increaseQuantity(product.id)}>+</button>
-                                                </div>
-
                                                 <button
-                                                    onClick={() => addToCart(product)}
+                                                    onClick={() => addToCart(product, 1)}
                                                     className="add-to-cart-btn"
-                                                    disabled={disabled}
                                                 >
                                                     Sepete Ekle
                                                 </button>
@@ -128,7 +119,7 @@ const App = () => {
                         </div>
                     } />
 
-                    <Route path="/cart" element={<CartPage cart={cart} balance={balance} />} />
+                    <Route path="/cart" element={<CartPage cart={cart} balance={balance} removeFromCart={removeFromCart} />} />
                 </Routes>
             </div>
         </Router>
