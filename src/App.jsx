@@ -24,9 +24,10 @@ const App = () => {
     const addToCart = (product, quantity) => {
         const totalCost = product.price * quantity;
 
+        // Bakiyeyi kontrol et
         if (totalCost > balance) {
             alert(`Yetersiz bakiye! Bu ürün için ${totalCost} TL gerekiyor, ama sadece ${balance} TL'niz var.`);
-            return;
+            return; // İşlemi durdur
         }
 
         const updatedCart = [...cart];
@@ -39,23 +40,29 @@ const App = () => {
         }
 
         setCart(updatedCart);
-        setBalance(balance - totalCost);
+        setBalance(balance - totalCost); // Bakiyeden düş
     };
 
-    // Sepetten belirli bir miktar ürün çıkarma ve bakiye artırma
     const removeFromCart = (productId, quantity) => {
         const updatedCart = [...cart];
         const existingProduct = updatedCart.find(item => item.id === productId);
 
         if (existingProduct) {
+            const refundAmount = existingProduct.price * quantity;
+
+            // Bakiyeyi kontrol et
+            if (balance + refundAmount < 0) {
+                alert('Hata: Bakiye 0 TL\'nin altına inemez!');
+                return; // İşlemi durdur
+            }
+
             existingProduct.quantity -= quantity;
 
             if (existingProduct.quantity <= 0) {
                 updatedCart.splice(updatedCart.indexOf(existingProduct), 1);
             }
 
-            // Sepetten çıkarılan ürünün fiyatını bakiyeye ekle
-            setBalance(balance + existingProduct.price * quantity);
+            setBalance(balance + refundAmount);
         }
 
         setCart(updatedCart);
